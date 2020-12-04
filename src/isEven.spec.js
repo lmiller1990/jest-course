@@ -4,6 +4,13 @@ function isEven(x) {
 
 // describe, it
 describe('isEven', () => {
+  it.each([
+    [0, true],
+    [1, false],
+    [2, true],
+  ])('isEven(%i)', (input, actual) => {
+    expect(isEven(input)).toBe(actual)
+  })
 
   it('returns true for an odd value', () => {
     expect(isEven(0)).toBe(true)

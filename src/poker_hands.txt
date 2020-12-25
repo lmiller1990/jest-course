@@ -1,0 +1,14 @@
+Scenario #1 
+const p1 = ['3d', '4d', '5d', '5c', 'kc']
+const p2 = ['3c', '4c', '5c', 'jc', 'kd']
+p1 wins with pair of 5s over high card
+
+Scenario #2 
+const p1 = ['3d', '4d', '5d', '10c', 'kc']
+const p2 = ['3c', '4c', '5c', 'jc', 'kh']
+p1 wins with high card over high card
+
+Scenario #3 
+const p1 = ['3d', '4d', '5d', '5c', 'kc']
+const p2 = ['3c', '4c', '4c', 'jd', 'kd'] 
+p1 wins with pair of 5s over pair of 4s

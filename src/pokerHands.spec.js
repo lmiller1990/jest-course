@@ -55,15 +55,23 @@ describe('normalizeHand', () => {
 function pokerHands(hands) {
   const norm = hands.map(normalizeHand)
   const best = bestCard(norm)
-  console.log(best)
 
   function filterHands(sortedHands, best) {
     const candidates = sortedHands.filter(hand => {
       return hand.cards.includes(best)
     })
 
-    if (candidates > 1) {
-      // ...
+    if (candidates.length > 1) {
+      const handWithHighestCardRemoved = 
+        candidates.map(hand => {
+        return {
+          id: hand.id,
+          cards: hand.cards.filter(card => card !== best)
+        }
+      })
+
+      const newBest = bestCard(handWithHighestCardRemoved)
+      return filterHands(handWithHighestCardRemoved, newBest)
     }
 
     return hands.filter(hand => hand.id === candidates[0].id)
@@ -73,7 +81,7 @@ function pokerHands(hands) {
 }
 
 describe('pokerHands', () => {
-  it('p1 wins with a high card', () => {
+  xit('p1 wins with a high card', () => {
     const p1 = {
       id: 1,
       cards: ['3d', '4d', '5d', '10c', 'kc']
@@ -84,5 +92,18 @@ describe('pokerHands', () => {
     }
 
     expect(pokerHands([p1, p2])).toEqual([p1])
+  })
+
+  it('p2 wins with a high card', () => {
+    const p1 = {
+      id: 1,
+      cards: ['3d', '4d', '5d', '10c', 'kc']
+    }
+    const p2 = {
+      id: 2,
+      cards: ['3c', '4c', '5c', 'jc', 'kh']
+    }
+
+    expect(pokerHands([p1, p2])).toEqual([p2])
   })
 })

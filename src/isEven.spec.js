@@ -3,7 +3,7 @@ function isEven(x) {
 }
 
 // describe, it
-describe('isEven', () => {
+xdescribe('isEven', () => {
   it.each([
     [0, true],
     [1, false],

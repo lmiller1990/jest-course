@@ -2,6 +2,30 @@ function pokerHands(hands) {
   return []
 }
 
+// the cards must be sorted
+function bestCard(hands) {
+  return hands.reduce((best, hand) => {
+    if (best < hand.cards[0]) {
+      return hand.cards[0]
+    }
+    return best
+  }, hands[0].cards[0])
+}
+
+describe('bestCard', () => {
+  it('returns highest card in play', () => {
+    const p1 = {
+      id: 1,
+      cards: ['12', '10', '3']
+    }
+    const p2 = {
+      id: 2,
+      cards: ['14', '12', '2']
+    }
+
+    expect(bestCard([p1, p2])).toEqual('14')
+  })
+})
 
 function normalizeHand(hand) {
   const cards = hand.cards.map(card => {

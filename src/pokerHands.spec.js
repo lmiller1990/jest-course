@@ -1,7 +1,3 @@
-function pokerHands(hands) {
-  return []
-}
-
 // the cards must be sorted
 function bestCard(hands) {
   return hands.reduce((best, hand) => {
@@ -56,7 +52,27 @@ describe('normalizeHand', () => {
   })
 })
 
-xdescribe('pokerHands', () => {
+function pokerHands(hands) {
+  const norm = hands.map(normalizeHand)
+  const best = bestCard(norm)
+  console.log(best)
+
+  function filterHands(sortedHands, best) {
+    const candidates = sortedHands.filter(hand => {
+      return hand.cards.includes(best)
+    })
+
+    if (candidates > 1) {
+      // ...
+    }
+
+    return hands.filter(hand => hand.id === candidates[0].id)
+  }
+
+  return filterHands(norm, best)
+}
+
+describe('pokerHands', () => {
   it('p1 wins with a high card', () => {
     const p1 = {
       id: 1,

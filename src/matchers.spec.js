@@ -1,16 +1,11 @@
 test('', () => {
-  // ===
-  // string
-  // number
-  expect(1).not.toBe(1)
-  expect('cat').toBe('cat')
   const a = {
-    foo: 'bar'
-  }
-  const b = {
-    foo: 'bar'
+    foo: {
+      num : 1
+    }
   }
 
-  // toEqual
-  expect(a).not.toEqual(b)
+  expect(a).toHaveProperty(
+    'foo', { num : 1 }
+  )
 })

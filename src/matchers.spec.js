@@ -2,7 +2,7 @@ test('', () => {
   // ===
   // string
   // number
-  expect(1).toBe(1)
+  expect(1).not.toBe(1)
   expect('cat').toBe('cat')
   const a = {
     foo: 'bar'
@@ -12,5 +12,5 @@ test('', () => {
   }
 
   // toEqual
-  expect([]).toBe([])
+  expect(a).not.toEqual(b)
 })

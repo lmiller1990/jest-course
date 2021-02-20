@@ -1,13 +1,8 @@
-const fetchData = (cb) => {
-  // .......
-  const val = 'Data'
+test('', (done) => {
 
-  cb(val)
-}
+  setTimeout(() => {
+    expect(1).toBe(1)
+    done()
+  }, 3000)
 
-test('', async () => {
-  const cb = jest.fn()
-  fetchData(cb)
-
-  expect(cb).toHaveBeenCalledWith('Data')
 })

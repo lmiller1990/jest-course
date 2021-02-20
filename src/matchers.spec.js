@@ -1,19 +1,13 @@
+const fetchData = (cb) => {
+  // .......
+  const val = 'Data'
+
+  cb(val)
+}
+
 test('', async () => {
-  const a = {
-    foo: {
-      num : 1
-    }
-  }
+  const cb = jest.fn()
+  fetchData(cb)
 
-  const p = new Promise((res, rej) => {
-    rej(a)
-  })
-
-  await expect(p).rejects.toEqual({
-    foo: {
-      num: 1
-    }
-  })
-
-  // ...
+  expect(cb).toHaveBeenCalledWith('Data')
 })

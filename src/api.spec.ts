@@ -13,17 +13,18 @@ const createApp = () => {
 describe('app', () => {
   let app: Server
   beforeEach((done) => {
-    console.log('Before')
     app = createApp().listen(8080, done)
   })
 
   afterEach((done) => {
-    console.log('After')
     app.close(done)
   })
 
   it('get data', async () => {
-    const res = await axios.default.get('http://localhost:8080/data')
-    console.log(res.data)
+    interface Data {
+      foo: string
+    }
+    const res = await axios.default.get<Data>('http://localhost:8080/data')
+    expect(res.data).toEqual<Data>({ foo: 'bar' })
   })
 })

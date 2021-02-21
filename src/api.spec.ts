@@ -19,4 +19,17 @@ describe('app', () => {
     const res = await axios.default.get<Data>('http://localhost:8080/data')
     expect(res.data).toEqual<Data>({ foo: 'bar' })
   })
+
+  it('successfully auth', async () => {
+    const res = await axios.default.post(
+      'http://localhost:8080/login', 
+      {},
+      {
+        headers: {
+          Authorization: 'Bearer TOKEN'
+        }
+      }
+    )
+    console.log(res)
+  })
 })

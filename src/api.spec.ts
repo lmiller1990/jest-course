@@ -35,4 +35,23 @@ describe('app', () => {
 
     expect(res.status).toBe(200)
   })
+
+  it('fails to auth', async () => {
+    const token = jwt.sign('token', 'fake key')
+    const res = () => axios.default.post(
+      'http://localhost:8080/login', 
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    try {
+      await res()
+    } catch (e) {
+      expect(e.response.status).toBe(401)
+    }
+  })
 })

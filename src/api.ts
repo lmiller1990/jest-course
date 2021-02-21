@@ -22,7 +22,7 @@ export const createApp = () => {
       res.sendStatus(401)
     }
 
-    res.json({ foo: 'bar' })
+    res.sendStatus(200)
   })
 
   return app

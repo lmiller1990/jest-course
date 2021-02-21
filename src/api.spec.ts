@@ -1,6 +1,7 @@
 import { Server } from 'http'
 import * as axios from 'axios'
-import { createApp } from './api'
+import { createApp, SECRET_KEY } from './api'
+import * as jwt from 'jsonwebtoken'
 
 describe('app', () => {
   let app: Server
@@ -21,15 +22,17 @@ describe('app', () => {
   })
 
   it('successfully auth', async () => {
+    const token = jwt.sign('token', SECRET_KEY)
     const res = await axios.default.post(
       'http://localhost:8080/login', 
       {},
       {
         headers: {
-          Authorization: 'Bearer TOKEN'
+          Authorization: `Bearer ${token}`
         }
       }
     )
-    console.log(res)
+
+    expect(res.status).toBe(200)
   })
 })

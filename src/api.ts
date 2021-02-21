@@ -1,6 +1,8 @@
 import * as express from 'express'
 import * as jwt from 'jsonwebtoken'
 
+export const SECRET_KEY = 'secret'
+
 export const createApp = () => {
   const app = express()
   app.get('/data', (req, res) => {
@@ -14,7 +16,11 @@ export const createApp = () => {
     }
     // Authorization: Bearer ____
     const [_, token] = auth.split(' ')
-    console.log(token)
+    try {
+      jwt.verify(token, SECRET_KEY)
+    } catch (e) {
+      res.sendStatus(401)
+    }
 
     res.json({ foo: 'bar' })
   })

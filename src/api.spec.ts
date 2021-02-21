@@ -48,10 +48,12 @@ describe('app', () => {
       }
     )
 
-    try {
-      await res()
-    } catch (e) {
-      expect(e.response.status).toBe(401)
-    }
+    // try {
+    //   await res()
+    // } catch (e) {
+    //   expect(e.response.status).toBe(401)
+    // }
+    await expect(res).rejects.toHaveProperty(
+      'response.status', 401)
   })
 })

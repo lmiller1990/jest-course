@@ -5,5 +5,10 @@ export const createApp = () => {
   app.get('/data', (req, res) => {
     res.json({ foo: 'bar' })
   })
+
+  app.post('/login', (req, res) => {
+    res.json({ foo: 'bar' })
+  })
+
   return app
 }

@@ -1,14 +1,6 @@
-import * as express from 'express'
 import { Server } from 'http'
 import * as axios from 'axios'
-
-const createApp = () => {
-  const app = express()
-  app.get('/data', (req, res) => {
-    res.json({ foo: 'bar' })
-  })
-  return app
-}
+import { createApp } from './api'
 
 describe('app', () => {
   let app: Server
